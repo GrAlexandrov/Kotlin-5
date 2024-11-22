@@ -16,6 +16,9 @@ fun main() {
     techChecks()
     println("\n===> Taz...")
     println(Taz.color)
+    println("\n===> refuel...")
+    reFuel(Taz,5)
+    reFuelCars()
 }
 
 fun driveCars() {
@@ -36,6 +39,7 @@ fun innerNestedCheck() {
     println("Скорость до проверки: ${output.getCurrentSpeed()}") // Выводит 0
     Vaz2107.test(vaz) // Газуем...
     println("Скорость после проверки: ${output.getCurrentSpeed()}") // Выводит случайную скорость
+    println("Уровень топлива: ${output.getFuelContents()}") //Ввыводит уровень топлива
 }
 
 fun garageMake() {
@@ -91,3 +95,42 @@ fun repairEngine(car: VazPlatform) {
         is VazEngine.SAMARA_2108 -> println("Угол зажигания у двигателя объемом ${car.engine.volume} куб.см у машины $car")
     }
 }
+/**
+ * Заправка топливом
+ */
+fun reFuel(car: Car, liters:Int){
+    println()
+    println(car.MODEL)
+    try {
+    println("Уровень топлива до заправки= ${car.carOutput.getFuelContents()}")
+
+    when(car.MODEL){
+        "Vaz2107"->car.typeOfFuel=CarBuilder.TankMouth.LADA_2107().tupeOfFuel
+        "Vaz2108" ->car.typeOfFuel=CarBuilder.TankMouth.SAMARA_2108().tupeOfFuel
+        "Taz" -> car.typeOfFuel=CarBuilder.TankMouth.Taz().tupeOfFuel
+    }
+
+    when (car.typeOfFuel) {
+            "Petrol" -> fuelPetrol(car, liters)
+            "Lpg" -> fuelLpg(car, liters)
+    }
+    println("Заправляем топливо: ${car.typeOfFuel}")
+    println("Уровень топлива после заправки= ${car.carOutput.getFuelContents()}")
+    }
+    catch (e: Error) {
+        println("Бак взорвался")
+    }
+}
+fun fuelPetrol(car: Car,liters: Int){CarBuilder.Tank.receiveFuel(car, liters)}
+fun fuelLpg(car: Car,liters: Int){CarBuilder.Tank.receiveFuel(car, liters)}
+fun reFuelCars(){
+        val cars = listOf(
+            Vaz2107.build(Car.Plates("123", 77)),
+            Vaz2108.build(Car.Plates("321", 78)),
+            )
+        cars.forEach { car ->
+            reFuel(car, 20)
+            println("Автомобиль: ${car.MODEL} состояние:${car.toString()}")
+        }
+}
+
