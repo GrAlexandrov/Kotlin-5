@@ -15,7 +15,6 @@ abstract class VazPlatform(override val color: String) : Car {
     // Абстрактное свойство двигателя
     abstract val engine: VazEngine
     override var typeOfFuel: String = ""
-    override var fuelLevel: Int = 10
 }
 
 // Перечисление двигателей ВАЗ

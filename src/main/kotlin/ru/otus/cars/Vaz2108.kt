@@ -6,7 +6,7 @@ import kotlin.random.Random
  * Восьмерка
  */
 class Vaz2108 private constructor(color: String) : VazPlatform(color), Car {
-
+    override var fuelLevel: Int = 10
     override val MODEL: String="Vaz2108"
     /**
      * Сам-себе-сборщик ВАЗ 2108.
