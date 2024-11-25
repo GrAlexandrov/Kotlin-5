@@ -105,9 +105,9 @@ fun reFuel(car: Car, liters:Int){
     println("Уровень топлива до заправки= ${car.carOutput.getFuelContents()}")
 
     when(car.MODEL){
-        "Vaz2107"->car.typeOfFuel=CarBuilder.TankMouth.LADA_2107().tupeOfFuel
-        "Vaz2108" ->car.typeOfFuel=CarBuilder.TankMouth.SAMARA_2108().tupeOfFuel
-        "Taz" -> car.typeOfFuel=CarBuilder.TankMouth.Taz().tupeOfFuel
+        "Vaz2107"->car.typeOfFuel= TankMouth.LADA_2107().typeOfFuel
+        "Vaz2108" ->car.typeOfFuel=TankMouth.SAMARA_2108().typeOfFuel
+        "Taz" -> car.typeOfFuel=TankMouth.Taz().typeOfFuel
     }
 
     when (car.typeOfFuel) {
