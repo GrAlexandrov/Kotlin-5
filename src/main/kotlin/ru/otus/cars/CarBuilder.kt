@@ -19,12 +19,14 @@ sealed interface CarBuilder {
         car.fuelLevel+=liters
     }
 }
+
+
 }
-sealed class TankMouth(val typeOfFuel:String){
-    class LADA_2107 : TankMouth("Lpg")
-    class SAMARA_2108 : TankMouth("Petrol")
-    class Taz : TankMouth(when(Random.nextInt(0, 2)){
-        0->"Petrol"
-        else -> {"Lpg"}
+enum class TankMouth(val typeOfFuel: String){
+    LADA_2107("Lpg"),
+    SAMARA_2108("Petrol"),
+    Taz(when(Random.nextInt(0, 2)) {
+        0 -> "Lpg"
+        else -> "Petrol"
     })
 }

@@ -3,7 +3,7 @@ package ru.otus.cars
 object Taz: Car {
     override var fuelLevel: Int = 10
         set(value)  = throw NotImplementedError("Взрыв бензобака")
-    override var typeOfFuel: String = ""
+    override val typeOfFuel= TankMouth.Taz.typeOfFuel
     override val MODEL = "Taz"
     /**
      * Номерной знак
@@ -40,4 +40,6 @@ object Taz: Car {
     override fun wheelToLeft(degrees: Int) {
         throw NotImplementedError("Руля нет")
     }
+
+
 }

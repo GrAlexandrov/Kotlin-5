@@ -7,6 +7,7 @@ import kotlin.random.Random
  */
 class Vaz2107 private constructor(color: String) : VazPlatform(color) {
     override val MODEL: String="Vaz2107"
+    override lateinit var typeOfFuel:String
     /**
      * Сам-себе-сборщик ВАЗ 2107.
      */
@@ -21,6 +22,7 @@ class Vaz2107 private constructor(color: String) : VazPlatform(color) {
         override fun build(plates: Car.Plates): Vaz2107 = Vaz2107("Зеленый").apply {
             this.engine = getRandomEngine()
             this.plates = plates
+            this.typeOfFuel= TankMouth.LADA_2107.typeOfFuel
         }
 
         /**

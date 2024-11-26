@@ -1,5 +1,7 @@
 package ru.otus.cars
 
+import kotlin.random.Random
+
 fun main() {
     println("\n===> drive cars...")
     driveCars()
@@ -18,6 +20,7 @@ fun main() {
     println(Taz.color)
     println("\n===> refuel...")
     reFuel(Taz,5)
+    println(Taz.typeOfFuel)
     reFuelCars()
 }
 
@@ -104,15 +107,19 @@ fun reFuel(car: Car, liters:Int){
     try {
     println("Уровень топлива до заправки= ${car.carOutput.getFuelContents()}")
 
-    when(car.MODEL){
-        "Vaz2107"->car.typeOfFuel= TankMouth.LADA_2107().typeOfFuel
-        "Vaz2108" ->car.typeOfFuel=TankMouth.SAMARA_2108().typeOfFuel
-        "Taz" -> car.typeOfFuel=TankMouth.Taz().typeOfFuel
-    }
+//    when(car.MODEL){
+//        "Vaz2107"->car.typeOfFuel= TankMouth.LADA_2107().typeOfFuel
+//        "Vaz2108" ->car.typeOfFuel=TankMouth.SAMARA_2108().typeOfFuel
+//        "Taz" -> car.typeOfFuel=TankMouth.Taz().typeOfFuel
+//    }
 
     when (car.typeOfFuel) {
             "Petrol" -> fuelPetrol(car, liters)
             "Lpg" -> fuelLpg(car, liters)
+        "Petrol&Lpg"-> when(Random.nextInt(0, 1)) {
+        0 -> fuelPetrol(car, liters)
+        else -> fuelLpg(car, liters)
+    }
     }
     println("Заправляем топливо: ${car.typeOfFuel}")
     println("Уровень топлива после заправки= ${car.carOutput.getFuelContents()}")
