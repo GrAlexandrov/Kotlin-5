@@ -20,7 +20,6 @@ fun main() {
     println(Taz.color)
     println("\n===> refuel...")
     reFuel(Taz,5)
-    println(Taz.typeOfFuel)
     reFuelCars()
 }
 
@@ -106,14 +105,7 @@ fun reFuel(car: Car, liters:Int){
     println(car.MODEL)
     try {
     println("Уровень топлива до заправки= ${car.carOutput.getFuelContents()}")
-
-//    when(car.MODEL){
-//        "Vaz2107"->car.typeOfFuel= TankMouth.LADA_2107().typeOfFuel
-//        "Vaz2108" ->car.typeOfFuel=TankMouth.SAMARA_2108().typeOfFuel
-//        "Taz" -> car.typeOfFuel=TankMouth.Taz().typeOfFuel
-//    }
-
-    when (car.typeOfFuel) {
+   when (car.typeOfFuel) {
             "Petrol" -> fuelPetrol(car, liters)
             "Lpg" -> fuelLpg(car, liters)
         "Petrol&Lpg"-> when(Random.nextInt(0, 1)) {
