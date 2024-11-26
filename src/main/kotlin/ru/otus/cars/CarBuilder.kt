@@ -11,22 +11,26 @@ sealed interface CarBuilder {
      */
     fun build(plates: Car.Plates): Car
 
-    object Tank{
-    fun getContents(car: Car): Int{
-        return car.fuelLevel
+    object Tank {
+        fun getContents(car: Car): Int {
+            return car.fuelLevel
+        }
+
+        fun receiveFuel(car: Car, liters: Int) {
+            car.fuelLevel += liters
+        }
     }
-    fun receiveFuel(car: Car, liters: Int){
-        car.fuelLevel+=liters
-    }
-}
 
 
 }
-enum class TankMouth(val typeOfFuel: String){
+
+enum class TankMouth(val typeOfFuel: String) {
     LADA_2107("Lpg"),
     SAMARA_2108("Petrol"),
-    Taz(when(Random.nextInt(0, 2)) {
-        0 -> "Lpg"
-        else -> "Petrol"
-    })
+    Taz(
+        when (Random.nextInt(0, 2)) {
+            1 -> "Lpg"
+            else -> "Petrol"
+        }
+    )
 }

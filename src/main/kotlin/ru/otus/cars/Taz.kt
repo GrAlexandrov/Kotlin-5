@@ -1,10 +1,11 @@
 package ru.otus.cars
 
-object Taz: Car {
+object Taz : Car {
     override var fuelLevel: Int = 10
-        set(value)  = throw NotImplementedError("Взрыв бензобака")
-    override val typeOfFuel= TankMouth.Taz.typeOfFuel
+        set(value) = throw NotImplementedError("Взрыв бензобака")
+    override var tankMouth: TankMouth = TankMouth.Taz
     override val MODEL = "Taz"
+
     /**
      * Номерной знак
      */

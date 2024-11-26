@@ -1,14 +1,14 @@
 package ru.otus.cars
 
-import kotlin.random.Random
 
 /**
  * Машина целиком
  */
 interface Car : CarInput {
     var fuelLevel: Int
-    val typeOfFuel:String
-    val MODEL:String
+    var tankMouth: TankMouth
+    val MODEL: String
+
     /**
      * Номерной знак
      */

@@ -1,6 +1,5 @@
 package ru.otus.cars
 
-import kotlin.random.Random
 
 fun main() {
     println("\n===> drive cars...")
@@ -19,7 +18,7 @@ fun main() {
     println("\n===> Taz...")
     println(Taz.color)
     println("\n===> refuel...")
-    reFuel(Taz,5)
+    reFuel(Taz, 5)
     reFuelCars()
 }
 
@@ -97,39 +96,43 @@ fun repairEngine(car: VazPlatform) {
         is VazEngine.SAMARA_2108 -> println("Угол зажигания у двигателя объемом ${car.engine.volume} куб.см у машины $car")
     }
 }
+
 /**
  * Заправка топливом
  */
-fun reFuel(car: Car, liters:Int){
+fun reFuel(car: Car, liters: Int) {
     println()
     println(car.MODEL)
+    println(car.tankMouth.typeOfFuel)
     try {
-    println("Уровень топлива до заправки= ${car.carOutput.getFuelContents()}")
-   when (car.typeOfFuel) {
+        println("Уровень топлива до заправки= ${car.carOutput.getFuelContents()}")
+        when (car.tankMouth.typeOfFuel) {
             "Petrol" -> fuelPetrol(car, liters)
             "Lpg" -> fuelLpg(car, liters)
-        "Petrol&Lpg"-> when(Random.nextInt(0, 1)) {
-        0 -> fuelPetrol(car, liters)
-        else -> fuelLpg(car, liters)
-    }
-    }
-    println("Заправляем топливо: ${car.typeOfFuel}")
-    println("Уровень топлива после заправки= ${car.carOutput.getFuelContents()}")
-    }
-    catch (e: Error) {
+        }
+        println("Заправляем топливо: ${car.tankMouth.typeOfFuel}")
+        println("Уровень топлива после заправки= ${car.carOutput.getFuelContents()}")
+    } catch (e: Error) {
         println("Бак взорвался")
     }
 }
-fun fuelPetrol(car: Car,liters: Int){CarBuilder.Tank.receiveFuel(car, liters)}
-fun fuelLpg(car: Car,liters: Int){CarBuilder.Tank.receiveFuel(car, liters)}
-fun reFuelCars(){
-        val cars = listOf(
-            Vaz2107.build(Car.Plates("123", 77)),
-            Vaz2108.build(Car.Plates("321", 78)),
-            )
-        cars.forEach { car ->
-            reFuel(car, 20)
-            println("Автомобиль: ${car.MODEL} состояние:${car.toString()}")
-        }
+
+fun fuelPetrol(car: Car, liters: Int) {
+    CarBuilder.Tank.receiveFuel(car, liters)
+}
+
+fun fuelLpg(car: Car, liters: Int) {
+    CarBuilder.Tank.receiveFuel(car, liters)
+}
+
+fun reFuelCars() {
+    val cars = listOf(
+        Vaz2107.build(Car.Plates("123", 77)),
+        Vaz2108.build(Car.Plates("321", 78)),
+    )
+    cars.forEach { car ->
+        reFuel(car, 20)
+        println("Автомобиль: ${car.MODEL} состояние:${car.toString()}")
+    }
 }
 

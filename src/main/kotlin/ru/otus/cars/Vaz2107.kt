@@ -6,8 +6,9 @@ import kotlin.random.Random
  * Семёрочка
  */
 class Vaz2107 private constructor(color: String) : VazPlatform(color) {
-    override val MODEL: String="Vaz2107"
-    override lateinit var typeOfFuel:String
+    override val MODEL: String = "Vaz2107"
+    override var tankMouth: TankMouth= TankMouth.LADA_2107
+
     /**
      * Сам-себе-сборщик ВАЗ 2107.
      */
@@ -22,7 +23,6 @@ class Vaz2107 private constructor(color: String) : VazPlatform(color) {
         override fun build(plates: Car.Plates): Vaz2107 = Vaz2107("Зеленый").apply {
             this.engine = getRandomEngine()
             this.plates = plates
-            this.typeOfFuel= TankMouth.LADA_2107.typeOfFuel
         }
 
         /**
@@ -70,6 +70,7 @@ class Vaz2107 private constructor(color: String) : VazPlatform(color) {
      * Делегируем приборы внутреннему классу
      */
     override val carOutput: CarOutput = VazOutput()
+
     /**
      * Имеет доступ к внутренним данным ЭТОГО ВАЗ-2107!
      */
@@ -77,6 +78,7 @@ class Vaz2107 private constructor(color: String) : VazPlatform(color) {
         override fun getCurrentSpeed(): Int {
             return this@Vaz2107.currentSpeed
         }
+
         override fun getFuelContents(): Int {
             return CarBuilder.Tank.getContents(this@Vaz2107)
         }
